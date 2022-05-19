@@ -1,0 +1,21 @@
+Sub ReSave_All()
+    Dim StrFile     As String, _
+        pathFile    As String, _
+        pathDir     As String
+        
+    Dim curWrkb As Workbook
+    
+    pathDir = "C:\"
+    StrFile = Dir(pathDir & "*.xlsx")
+    
+    Do While Len(StrFile) > 0
+        pathFile = pathDir & StrFile
+        Set curWrkb = Workbooks.Open(pathFile)
+        With curWrkb
+            .Save
+            .Close SaveChanges:=False
+        End With
+        
+        StrFile = Dir
+    Loop
+End Sub
