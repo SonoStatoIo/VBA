@@ -1,0 +1,16 @@
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+    Dim path_zip As Range
+    Dim file_zip As Variant
+    
+    Set path_zip = Range("path_zip")
+    
+    If Target.Address = path_zip.Address Then
+        file_zip = Application.GetOpenFilename(FileFilter:="File ZIP (*.zip), *.zip", Title:="Seleziona File Zip")
+
+        If file_zip = False Then
+            Exit Sub
+        Else
+            path_zip.Value2 = file_zip
+        End If
+    End If
+End Sub
